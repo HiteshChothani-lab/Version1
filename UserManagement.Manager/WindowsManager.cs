@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Common.Constants;
+using UserManagement.Common.Converters;
 using UserManagement.Common.Enums;
 using UserManagement.Common.Utilities;
 using UserManagement.Entity;
@@ -39,11 +40,14 @@ namespace UserManagement.Manager
                 respEntity.AccessCode = reqEntity.AccessCode;
 
                 string json = JsonConvert.SerializeObject(respEntity);
+                json = CryptoEngine.Encrypt(json, Config.SymmetricKey);
 
                 using (var outputFile = new StreamWriter(Config.FilePath + "validated-user.json", false, Encoding.UTF8))
                 {
                     outputFile.WriteLine(json);
                 }
+
+                File.SetAttributes(Config.FilePath + "validated-user.json", FileAttributes.Hidden);
             }
 
             return respEntity;
@@ -64,10 +68,14 @@ namespace UserManagement.Manager
             if (respEntity.StatusCode == (int)GenericStatusValue.Success)
             {
                 string json = JsonConvert.SerializeObject(respEntity);
+                json = CryptoEngine.Encrypt(json, Config.SymmetricKey);
+
                 using (var outputFile = new StreamWriter(Config.FilePath + "master-store.json", false, Encoding.UTF8))
                 {
                     outputFile.WriteLine(json);
                 }
+
+                File.SetAttributes(Config.FilePath + "master-store.json", FileAttributes.Hidden);
             }
 
             return respEntity;
@@ -282,7 +290,6 @@ namespace UserManagement.Manager
 
             return respEntity;
         }
-
 
         public async Task<DefaultResponseEntity> SetUnsetFlag(SetUnsetFlagRequestEntity reqEntity)
         {

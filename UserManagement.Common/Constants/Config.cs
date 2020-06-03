@@ -2,12 +2,14 @@
 using System;
 using System.IO;
 using System.Text;
+using UserManagement.Common.Converters;
 
 namespace UserManagement.Common.Constants
 {
     public static class Config
     {
-        public static readonly string FilePath = Path.Combine(Path.GetTempPath(), "Version1-");
+        public static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Version1-");
+        public static readonly string SymmetricKey = "723FFEB59C2BB844";
 
         private static CurrentUser currentUser;
         public static CurrentUser CurrentUser
@@ -39,6 +41,7 @@ namespace UserManagement.Common.Constants
                 using (var reader = new StreamReader(userPath, Encoding.UTF8))
                 {
                     string result = reader.ReadToEnd();
+                    result = CryptoEngine.Decrypt(result, SymmetricKey);
                     return JsonConvert.DeserializeObject<CurrentUser>(result);
                 }
             }
@@ -53,6 +56,7 @@ namespace UserManagement.Common.Constants
                 using (var reader = new StreamReader(masterPath, Encoding.UTF8))
                 {
                     string result = reader.ReadToEnd();
+                    result = CryptoEngine.Decrypt(result, SymmetricKey);
                     return JsonConvert.DeserializeObject<MasterStore>(result);
                 }
             }

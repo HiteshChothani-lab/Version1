@@ -86,6 +86,7 @@
     <Compile Include="Constants\NavigationConstants.cs" />
     <Compile Include="Constants\PusherData.cs" />
     <Compile Include="Constants\ViewNames.cs" />
+    <Compile Include="Converters\CryptoEngine.cs" />
     <Compile Include="Converters\Parse.cs" />
     <Compile Include="Enums\GenericStatusValue.cs" />
     <Compile Include="Enums\PusherAction.cs" />
