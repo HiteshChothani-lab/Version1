@@ -820,7 +820,7 @@
         </Grid>
 
         <ctrl:CustomLoader Grid.RowSpan="5"
-                           Text="{Binding LoaderMessage}"
+                           Text="{Binding LoaderTextBlockMessage}"
                            Visibility="{Binding LoaderVisibility}" 
                            d:IsHidden="True" />
 

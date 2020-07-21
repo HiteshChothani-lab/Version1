@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using UserManagement.Common.Constants;
 using UserManagement.Common.Enums;
 using UserManagement.Entity;
@@ -97,6 +96,16 @@ namespace UserManagement.UI.ViewModels
             {
                 _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(false);
 
+                if (user != null)
+                {
+                    await GetData();
+                }
+            });
+
+            _eventAggregator.GetEvent<RegisterStoreUserSubmitEvent>().Subscribe(async (user) =>
+            {
+                _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(false);
+                ResetFields();
                 if (user != null)
                 {
                     await GetData();
@@ -470,7 +479,7 @@ namespace UserManagement.UI.ViewModels
             }
 
             SetLoaderVisibility("Adding user...");
-            var result = await _windowsManager.SaveUserData(reqEntity);
+            var result = await _windowsManager.SaveUserData(reqEntity, false);
             if (result.StatusCode == (int)GenericStatusValue.Success)
             {
                 SetLoaderVisibility();
@@ -482,7 +491,22 @@ namespace UserManagement.UI.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show(result.Messagee, "Unsuccessful");
+                    if ((result.Messagee == "Mobile no doesnot exits!") || result.Messagee == "Name doesnot match!")
+                    {
+                        // ask to Register
+                        var message = $"Mobile Number: {MobileNumber} not found. {Environment.NewLine} Do you want to register a new user?";
+                        const string title = "Mobile Number Not Found";
+
+                        var action = MessageBox.Show(message, title, MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                        if (action == MessageBoxResult.OK)
+                        {
+                            ExecuteRegisterUserCommand(reqEntity);
+                        }
+                        else
+                            MessageBox.Show(result.Messagee, "Unsuccessful");
+                    }
+                    else
+                        MessageBox.Show(result.Messagee, "Unsuccessful");
                 }
             }
             else if (result.StatusCode == (int)GenericStatusValue.NoInternetConnection)
@@ -503,6 +527,18 @@ namespace UserManagement.UI.ViewModels
 
             SetLoaderVisibility();
             this.CanTapAddCommand = true;
+        }
+
+        private void ExecuteRegisterUserCommand(SaveUserDataRequestEntity user)
+        {
+            _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
+            var parameters = new NavigationParameters
+            {
+                { NavigationConstants.SelectedStoreUser, user }
+            };
+
+            RegionManager.RequestNavigate
+                ("PopupRegion", ViewNames.RegisterUserPopupPage, parameters);
         }
 
         private async Task ExecuteDeleteStoreUserCommand(StoreUserEntity parameter)

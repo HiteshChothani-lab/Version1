@@ -132,6 +132,7 @@
     <Compile Include="Events\MoveStoreUserSubmitEvent.cs" />
     <Compile Include="Events\MoveStoreUserToArchiveSubmitEvent.cs" />
     <Compile Include="Events\NonMobileUserAddEvent.cs" />
+    <Compile Include="Events\RegisterStoreUserSubmitEvent.cs" />
     <Compile Include="ItemModels\ExpressTimeItemModel.cs" />
     <Compile Include="ItemModels\EditButtonsItemModel.cs" />
     <Compile Include="ItemModels\EditStoreUserItemModel.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="UIModule.cs" />
     <Compile Include="ViewModels\Popups\EditButtonsPopupPageViewModel.cs" />
     <Compile Include="ViewModels\Popups\MoveUserPopupPageViewModel.cs" />
+    <Compile Include="ViewModels\Popups\RegisterUserPopupPageViewModel.cs" />
     <Compile Include="ViewModels\Popups\UpdateNonMobileUserPopupPageViewModel.cs" />
     <Compile Include="ViewModels\Popups\EditUserPopupPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -160,6 +162,9 @@
     </Compile>
     <Compile Include="Views\Popups\MoveUserPopupPage.xaml.cs">
       <DependentUpon>MoveUserPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\RegisterUserPopupPage.xaml.cs">
+      <DependentUpon>RegisterUserPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Popups\UpdateNonMobileUserPopupPage.xaml.cs">
       <DependentUpon>UpdateNonMobileUserPopupPage.xaml</DependentUpon>
@@ -229,6 +234,10 @@
     <Page Include="Views\Popups\MoveUserPopupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Popups\RegisterUserPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Popups\UpdateNonMobileUserPopupPage.xaml">
       <SubType>Designer</SubType>

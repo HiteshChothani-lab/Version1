@@ -10,7 +10,7 @@ namespace UserManagement.Manager
         Task<ValidateUserResponseEntity> ValidateUser(ValidateUserRequestEntity reqEntity);
 		Task<RegisterMasterStoreResponseEntity> RegisterMasterStore(RegisterMasterStoreRequestEntity reqEntity);
         Task<DefaultResponseEntity> CheckStoreUser(CheckUserRequestEntity reqEntity);
-        Task<DefaultResponseEntity> SaveUserData(SaveUserDataRequestEntity reqEntity);
+        Task<DefaultResponseEntity> SaveUserData(SaveUserDataRequestEntity reqEntity, bool dummy);
         Task<StoreUsersResponseEntity> GetStoreUsers(GetStoreUsersRequestEntity reqEntity);
         Task<ArchieveStoreUsersResponseEntity> GetArchieveStoreUsers(GetStoreUsersRequestEntity reqEntity);
         Task<DefaultResponseEntity> DeleteStoreUser(DeleteStoreUserRequestEntity reqEntity);

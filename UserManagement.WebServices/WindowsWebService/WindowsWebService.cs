@@ -71,9 +71,10 @@ namespace UserManagement.WebServices
             return resultContract;
         }
 
-        public async Task<DefaultResponseContract> SaveUserData(SaveUserDataRequestContract reqContract)
+        public async Task<DefaultResponseContract> SaveUserData(SaveUserDataRequestContract reqContract, bool dummy)
         {
-            string endpoint = $"save_user_data.php?" +
+            string endpoint = dummy ? $"registerDummyMobile.php?" : $"save_user_data.php?";
+            endpoint = $"{endpoint}" +
                 $"action={reqContract.Action}&" +
                 $"firstname={reqContract.FirstName}&" +
                 $"lastname={reqContract.LastName}&" +
@@ -102,7 +103,7 @@ namespace UserManagement.WebServices
             resultContract.StatusCode = responseTuple.Item4;
             return resultContract;
         }
-
+		
         public async Task<StoreUsersResponseContract> GetStoreUsers(GetStoreUsersRequestContract reqContract)
         {
             string endpoint = $"get_store_users.php?" +

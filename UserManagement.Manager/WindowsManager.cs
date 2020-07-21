@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Common.Constants;
-using UserManagement.Common.Converters;
 using UserManagement.Common.Enums;
 using UserManagement.Common.Utilities;
 using UserManagement.Entity;
@@ -88,7 +87,7 @@ namespace UserManagement.Manager
             return respEntity;
         }
 
-        public async Task<DefaultResponseEntity> SaveUserData(SaveUserDataRequestEntity reqEntity)
+        public async Task<DefaultResponseEntity> SaveUserData(SaveUserDataRequestEntity reqEntity, bool dummy)
         {
             if (!Connectivity.IsInternetAvailable)
             {
@@ -97,7 +96,7 @@ namespace UserManagement.Manager
 
             var reqContract = Mapper.Map<SaveUserDataRequestContract>(reqEntity);
 
-            var respContract = await _windowsWebService.SaveUserData(reqContract);
+            var respContract = await _windowsWebService.SaveUserData(reqContract, dummy);
             var respEntity = Mapper.Map<DefaultResponseEntity>(respContract);
 
             return respEntity;
@@ -267,6 +266,7 @@ namespace UserManagement.Manager
 
             return respEntity;
         }
+
 
         public async Task<DefaultResponseEntity> SetUnsetFlag(SetUnsetFlagRequestEntity reqEntity)
         {

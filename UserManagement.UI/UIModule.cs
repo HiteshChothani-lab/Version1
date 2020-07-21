@@ -1,10 +1,8 @@
-﻿using DryIoc;
-using Prism.Events;
+﻿using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using UserManagement.Common.Constants;
-using UserManagement.Manager;
 using UserManagement.UI.ViewModels;
 using UserManagement.UI.Views;
 
@@ -13,17 +11,12 @@ namespace UserManagement.UI
     public class UIModule : IModule
     {
         private readonly IRegionManager _regionManager;
-        private readonly IContainer _container;
-		private readonly IWindowsManager _windowsManager;
         private readonly IEventAggregator _eventAggregator;
 
-        public UIModule(IContainer container, IRegionManager regionManager, 
-            IWindowsManager windowsManager, IEventAggregator eventAggregator)
+        public UIModule(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _container = container;
             _regionManager = regionManager;
-			_windowsManager = windowsManager;
         }
 
 		public async void OnInitialized(IContainerProvider containerProvider)
@@ -57,6 +50,7 @@ namespace UserManagement.UI
             containerRegistry.RegisterForNavigation<EditButtonsPopupPage>();
             containerRegistry.RegisterForNavigation<UpdateNonMobileUserPopupPage>();
             containerRegistry.RegisterForNavigation<MoveUserPopupPage>();
+            containerRegistry.RegisterForNavigation<RegisterUserPopupPage>();
         }
     }
 }
