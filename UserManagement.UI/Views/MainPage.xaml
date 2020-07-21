@@ -209,7 +209,7 @@
 
                         <ToggleButton Margin="5,5"
                                       HorizontalContentAlignment="Stretch"
-                                      IsChecked="{Binding IsCheckedVeryTerribleNoneDeal}"
+                                      IsChecked="{Binding IsCheckedSubButton1}"
                                       Style="{StaticResource RoundToggleButtonStyle}">
                             <ToggleButton.Content>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
@@ -248,7 +248,7 @@
                         <ToggleButton Grid.Column="1"
                                       Margin="5,5"
                                       HorizontalContentAlignment="Stretch"
-                                      IsChecked="{Binding IsCheckedVeryTerribleTerribleService}"
+                                      IsChecked="{Binding IsCheckedSubButton2}"
                                       Style="{StaticResource RoundToggleButtonStyle}">
                             <ToggleButton.Content>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
