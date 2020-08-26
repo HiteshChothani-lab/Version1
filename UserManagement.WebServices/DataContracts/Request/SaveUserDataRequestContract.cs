@@ -12,6 +12,7 @@
         public string Button2 { get; set; } = string.Empty;
         public string Button3 { get; set; } = string.Empty;
         public string Button4 { get; set; } = string.Empty;
+        public string Button5 { get; set; } = string.Empty;
         public long OrphanStatus { get; set; }
         public long SuperMasterId { get; set; }
         public long DeliverOrderStatus { get; set; }

@@ -232,6 +232,13 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _isCheckedButtonC, value);
         }
 
+        private bool _isCheckedButtonD;
+        public bool IsCheckedButtonD
+        {
+            get => _isCheckedButtonD;
+            set => SetProperty(ref _isCheckedButtonD, value);
+        }
+
         private bool _isCheckedOther;
         public bool IsCheckedOther
         {
@@ -442,11 +449,11 @@ namespace UserManagement.UI.ViewModels
                 return;
             }
 
-            if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC &&
+            if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD &&
                 !this.IsCheckedVeryTerribleNone && !IsCheckedSubButton1 &&
                 !this.IsCheckedSubButton2)
             {
-                MessageBox.Show("You must make a selection for Prescriptions or Devices or Vaccines or all.", "Required.");
+                MessageBox.Show("You must make a selection for Prescriptions or Devices or COVID-19 Test or Vaccines or all.", "Required.");
                 return;
             }
 
@@ -486,6 +493,7 @@ namespace UserManagement.UI.ViewModels
             reqEntity.Button1 = string.Empty;
             reqEntity.Button2 = string.Empty;
             reqEntity.Button3 = string.Empty;
+            reqEntity.Button4 = string.Empty;
 
             if (this.IsCheckedButtonA)
             {
@@ -502,19 +510,24 @@ namespace UserManagement.UI.ViewModels
                 reqEntity.Button3 = "Flu Shot";
             }
 
-            reqEntity.Button4 = string.Empty;
+            if (this.IsCheckedButtonD)
+            {
+                reqEntity.Button4 = "COVID19 Test";
+            }
+
+            reqEntity.Button5 = string.Empty;
 
             if (this.IsCheckedVeryTerribleNone || IsCheckedOtherVaccines)
             {
-                reqEntity.Button4 = "Other Vaccines";
+                reqEntity.Button5 = "Other Vaccines";
             }
             else if (this.IsCheckedSubButton1)
             {
-                reqEntity.Button4 = "Shingles";
+                reqEntity.Button5 = "Shingles";
             }
             else if (this.IsCheckedSubButton2)
             {
-                reqEntity.Button4 = "Pneumococcus";
+                reqEntity.Button5 = "Pneumococcus";
             }
 
             SetLoaderVisibility("Adding user...");
@@ -985,7 +998,7 @@ namespace UserManagement.UI.ViewModels
             this.FirstName = string.Empty;
             this.LastName = string.Empty;
             this.MobileNumber = string.Empty;
-            this.IsCheckedButtonA = this.IsCheckedButtonB = IsCheckedButtonC = 
+            this.IsCheckedButtonA = this.IsCheckedButtonB = IsCheckedButtonC = IsCheckedButtonD =
                 IsCheckedOther = IsCheckedOtherVaccines =
                 this.IsCheckedVeryTerribleNone = this.IsCheckedOtherVaccines =
                 this.IsCheckedSubButton1 = this.IsCheckedCovid19 =

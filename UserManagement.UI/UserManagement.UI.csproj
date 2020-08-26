@@ -312,5 +312,8 @@
     <Resource Include="Assets\othermedicine.png" />
     <Resource Include="Assets\pills.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\redneedle.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

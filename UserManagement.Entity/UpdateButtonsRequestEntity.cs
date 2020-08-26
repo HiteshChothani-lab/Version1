@@ -9,6 +9,7 @@
         public string Button2 { get; set; }
         public string Button3 { get; set; }
         public string Button4 { get; set; }
+        public string Button5 { get; set; }
         public long SuperMasterId { get; set; }
     }
 }

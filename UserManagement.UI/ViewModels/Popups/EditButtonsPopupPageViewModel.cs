@@ -73,6 +73,13 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _isCheckedButtonC, value);
         }
 
+        private bool _isCheckedButtonD;
+        public bool IsCheckedButtonD
+        {
+            get => _isCheckedButtonD;
+            set => SetProperty(ref _isCheckedButtonD, value);
+        }
+
         private bool _isCheckedOther;
         public bool IsCheckedOther
         {
@@ -215,11 +222,11 @@ namespace UserManagement.UI.ViewModels
                 return;
             }
 
-            if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC &&
+            if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD &&
                 !this.IsCheckedVeryTerribleNone && !IsCheckedSubButton1 &&
                 !this.IsCheckedSubButton2)
             {
-                MessageBox.Show("You must make a selection for Prescriptions or Devices or Vaccines or all.", "Required.");
+                MessageBox.Show("You must make a selection for Prescriptions or Devices or COVID-19 Test or Vaccines or all.", "Required.");
                 return;
             }
 
@@ -234,6 +241,7 @@ namespace UserManagement.UI.ViewModels
             reqEntity.Button1 = string.Empty;
             reqEntity.Button2 = string.Empty;
             reqEntity.Button3 = string.Empty;
+            reqEntity.Button4 = string.Empty;
 
             if (this.IsCheckedButtonA)
             {
@@ -250,19 +258,24 @@ namespace UserManagement.UI.ViewModels
                 reqEntity.Button3 = "Flu Shot";
             }
 
-            reqEntity.Button4 = string.Empty;
+            if (this.IsCheckedButtonD)
+            {
+                reqEntity.Button4 = "COVID19 Test";
+            }
+
+            reqEntity.Button5 = string.Empty;
 
             if (this.IsCheckedVeryTerribleNone || IsCheckedOtherVaccines)
             {
-                reqEntity.Button4 = "Other Vaccines";
+                reqEntity.Button5 = "Other Vaccines";
             }
             else if (this.IsCheckedSubButton1)
             {
-                reqEntity.Button4 = "Shingles";
+                reqEntity.Button5 = "Shingles";
             }
             else if (this.IsCheckedSubButton2)
             {
-                reqEntity.Button4 = "Pneumococcus";
+                reqEntity.Button5 = "Pneumococcus";
             }
 
             var result = await _windowsManager.UpdateButtons(reqEntity);
@@ -313,20 +326,21 @@ namespace UserManagement.UI.ViewModels
             this.IsCheckedButtonA = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn1);
             this.IsCheckedButtonB = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn2);
             this.IsCheckedButtonC = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn3);
+            this.IsCheckedButtonD = !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn4);
 
-            if (!string.IsNullOrWhiteSpace(SelectedStoreUser.Btn4))
+            if (IsCheckedButtonC || !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn5))
             {
                 this.IsCheckedOther = true;
-                if ("Other Vaccines".Equals(SelectedStoreUser.Btn4))
+                if ("Other Vaccines".Equals(SelectedStoreUser.Btn5))
                 {
                     this.IsCheckedVeryTerribleNone = true;
                     this.IsCheckedOtherVaccines = true;
                 }
-                else if ("Shingles".Equals(SelectedStoreUser.Btn4))
+                else if ("Shingles".Equals(SelectedStoreUser.Btn5))
                 {
                     this.IsCheckedSubButton1 = true;
                 }
-                else if ("Pneumococcus".Equals(SelectedStoreUser.Btn4))
+                else if ("Pneumococcus".Equals(SelectedStoreUser.Btn5))
                 {
                     this.IsCheckedSubButton2 = true;
                 }
@@ -335,7 +349,7 @@ namespace UserManagement.UI.ViewModels
 
         private void SetUnsetProperties()
         {
-            this.IsCheckedButtonA = this.IsCheckedButtonB = this.IsCheckedButtonC =
+            this.IsCheckedButtonA = this.IsCheckedButtonB = this.IsCheckedButtonC = this.IsCheckedButtonD =
                 this.IsCheckedVeryTerribleNone = this.IsCheckedOtherVaccines = IsCheckedOther =
                 this.IsCheckedSubButton1 = this.IsCheckedCovid19 =
                 IsCheckedSubButton2 = false;

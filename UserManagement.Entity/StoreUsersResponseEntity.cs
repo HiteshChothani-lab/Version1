@@ -88,13 +88,26 @@ namespace UserManagement.Entity
             }
         }
 
+        public string Column1DisplayImageLeftTop
+        {
+            get
+            {
+                if (this.Btn5.Contains("Pneumococcus") || this.Btn5.Contains("Shingles") || this.Btn5.Contains("Other Vaccines"))
+                {
+                    return "/UserManagement.UI;component/Assets/othermedicine.png";
+                }
+
+                return string.Empty;
+            }
+        }
+
         public string Column1DisplayImageRightTop
         {
             get
             {
-                if (this.Btn4.Contains("Pneumococcus") || this.Btn4.Contains("Shingles") || this.Btn4.Contains("Other Vaccines"))
+                if (!string.IsNullOrWhiteSpace(this.Btn4))
                 {
-                    return "/UserManagement.UI;component/Assets/othermedicine.png";
+                    return "/UserManagement.UI;component/Assets/redneedle.png";
                 }
 
                 return string.Empty;

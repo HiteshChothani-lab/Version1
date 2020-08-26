@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ctrl="clr-namespace:UserManagement.UI.CustomControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
@@ -83,11 +82,11 @@
                         Content="REFRESH" 
                         Visibility="Visible"/>
 
-                <Grid Grid.Row="2" Margin="30,0"
+                <Grid Grid.Row="2" Margin="5,0"
                       Grid.ColumnSpan="7">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100*" />
-                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="75*" />
+                        <ColumnDefinition Width="65*" />
                         <ColumnDefinition Width="78*" />
                         <ColumnDefinition Width="60*" />
                     </Grid.ColumnDefinitions>
@@ -142,7 +141,7 @@
                     </ToggleButton>
 
                     <ToggleButton Grid.Row="0" Grid.Column="2" Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonC}"
+                                      IsChecked="{Binding IsCheckedButtonD}"
                                       HorizontalContentAlignment="Stretch"
                                       Style="{StaticResource RoundToggleButtonStyle}">
                         <ToggleButton.Content>
@@ -153,12 +152,12 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Right"
                                         RenderOptions.BitmapScalingMode="HighQuality"
-                                        Source="/UserManagement.UI;component/Assets/medicine.png" />
+                                        Source="/UserManagement.UI;component/Assets/redneedle.png" />
                                 <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Left"
                                                FontSize="15"
                                                Margin="13,0,0,0"
-                                               Text="Flu Shot"/>
+                                               Text="COVID-19 Test"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -177,11 +176,11 @@
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         Source="/UserManagement.UI;component/Assets/othermedicine.png" />
                                 <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Right"
+                                               HorizontalAlignment="Center"
                                                FontSize="15"
-                                               Margin="0,0,8,0"
-                                           
-                                               Text="Other"/>
+                                               Margin="25,0,0,0"
+                                               Text="Vaccines"
+                                               TextWrapping="Wrap" />
                             </Grid>
                         </ToggleButton.Content>
                         <i:Interaction.Triggers>
@@ -201,13 +200,36 @@
                           Grid.ColumnSpan="4"
                           Visibility="{Binding IsCheckedOther, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100*" />
-                            <ColumnDefinition Width="100*" />
-                            <ColumnDefinition Width="78*" />
+                            <ColumnDefinition Width="60*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="85*" />
+                            <ColumnDefinition Width="70*" />
                             <ColumnDefinition Width="60*" />
                         </Grid.ColumnDefinitions>
 
                         <ToggleButton Margin="5,5"
+                                      IsChecked="{Binding IsCheckedButtonC}"
+                                      HorizontalContentAlignment="Stretch"
+                                      Style="{StaticResource RoundToggleButtonStyle}">
+                            <ToggleButton.Content>
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <Image Grid.Column="1"
+                                        MaxHeight="25"
+                                        Margin="5,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Right"
+                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                        Source="/UserManagement.UI;component/Assets/medicine.png" />
+                                    <TextBlock VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                               FontSize="13"
+                                               Margin="8,0,0,0"
+                                               Text="Flu Shot"/>
+                                </Grid>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+
+                        <ToggleButton Grid.Column="1" Margin="5,5"
                                       HorizontalContentAlignment="Stretch"
                                       IsChecked="{Binding IsCheckedSubButton1}"
                                       Style="{StaticResource RoundToggleButtonStyle}">
@@ -224,7 +246,7 @@
 
                                     <TextBlock VerticalAlignment="Center"
                                                HorizontalAlignment="Center"
-                                               FontSize="15"
+                                               FontSize="13"
                                                Margin="25,0,0,0"
                                                Text="Shingles"
                                                TextWrapping="Wrap" />
@@ -245,7 +267,7 @@
                             </i:Interaction.Triggers>
                         </ToggleButton>
 
-                        <ToggleButton Grid.Column="1"
+                        <ToggleButton Grid.Column="2"
                                       Margin="5,5"
                                       HorizontalContentAlignment="Stretch"
                                       IsChecked="{Binding IsCheckedSubButton2}"
@@ -262,7 +284,7 @@
 
                                     <TextBlock VerticalAlignment="Center"
                                                HorizontalAlignment="Right"
-                                               FontSize="15"
+                                               FontSize="13"
                                                Margin="0,0,8,0"
                                                Text="Pneumococcus"
                                                TextWrapping="Wrap" />
@@ -282,7 +304,7 @@
                             </i:Interaction.Triggers>
                         </ToggleButton>
 
-                        <ToggleButton Grid.Column="2"
+                        <ToggleButton Grid.Column="3"
                                       Margin="5,5"
                                       HorizontalContentAlignment="Stretch"
                                       IsChecked="{Binding IsCheckedCovid19}"
@@ -299,7 +321,7 @@
 
                                     <TextBlock VerticalAlignment="Center"
                                                HorizontalAlignment="Right"
-                                               FontSize="15"
+                                               FontSize="13"
                                                Margin="0,0,10,0"
                                                Text="COVID-19"
                                                TextWrapping="Wrap" />
@@ -319,7 +341,7 @@
                             </i:Interaction.Triggers>
                         </ToggleButton>
 
-                        <ToggleButton Grid.Column="3"
+                        <ToggleButton Grid.Column="4"
                                       Margin="5,5"
                                       HorizontalContentAlignment="Stretch"
                                       IsChecked="{Binding IsCheckedOtherVaccines}"
@@ -420,12 +442,17 @@
                                         <Grid Margin="2,0,2,2">
                                             <Grid Margin="0,3,0,0"
                                                   VerticalAlignment="Center">
-                                                <Image Width="40"
+                                                <StackPanel Width="40" HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center">
+                                                    <Image Width="40"
                                                        Margin="0"
-                                                       HorizontalAlignment="Left"
-                                                       VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageLeftTop}"
+                                                       Stretch="Uniform" />
+                                                    <Image Width="40"
+                                                       Margin="0"
                                                        Source="{Binding Column1DisplayImageLeft}"
                                                        Stretch="Uniform" />
+                                                </StackPanel>
                                                 <Image Width="40"
                                                        Margin="0"
                                                        HorizontalAlignment="Center"
@@ -706,12 +733,17 @@
 
                                             <Grid Margin="0,2,0,2"
                                                   VerticalAlignment="Center">
-                                                <Image Width="30"
+                                                <StackPanel Width="30" HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center">
+                                                    <Image Width="30"
                                                        Margin="0"
-                                                       HorizontalAlignment="Left"
-                                                       VerticalAlignment="Center"
+                                                       Source="{Binding Column1DisplayImageLeftTop}"
+                                                       Stretch="Uniform" />
+                                                    <Image Width="30"
+                                                       Margin="0"
                                                        Source="{Binding Column1DisplayImageLeft}"
                                                        Stretch="Uniform" />
+                                                </StackPanel>
                                                 <Image Width="30"
                                                        Margin="0"
                                                        HorizontalAlignment="Center"
