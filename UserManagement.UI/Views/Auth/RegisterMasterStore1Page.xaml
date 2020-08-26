@@ -135,7 +135,7 @@
                         Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
-                <StackPanel
+                <StackPanel Visibility="Collapsed"
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"

@@ -36,8 +36,8 @@ namespace UserManagement.WebServices
                 $"app_version_name={reqContract.AppVersionName}&" +
                 $"device_token={reqContract.DeviceToken}&" +
                 $"device_id={reqContract.DeviceId}&" +
-                $"device_type={reqContract.DeviceType}&" +
-                $"timezone={reqContract.TimeZone}";
+                //$"timezone={reqContract.TimeZone}&" +
+                $"device_type={reqContract.DeviceType}";
 
             var responseTuple = await GetAsync<RegisterMasterStoreResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
