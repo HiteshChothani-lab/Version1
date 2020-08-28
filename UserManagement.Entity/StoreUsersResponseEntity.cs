@@ -92,7 +92,7 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (this.Btn5.Contains("Pneumococcus") || this.Btn5.Contains("Shingles") || this.Btn5.Contains("Other Vaccines"))
+                if (this.Btn4.Contains("Pneumococcus") || this.Btn4.Contains("Shingles") || this.Btn4.Contains("Other Vaccines"))
                 {
                     return "/UserManagement.UI;component/Assets/othermedicine.png";
                 }
@@ -105,7 +105,7 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(this.Btn4))
+                if (!string.IsNullOrWhiteSpace(this.Btn3))
                 {
                     return "/UserManagement.UI;component/Assets/redneedle.png";
                 }
@@ -118,7 +118,7 @@ namespace UserManagement.Entity
         {
             get
             {
-                if (this.Btn3.Contains("Flu Shot"))
+                if (this.Btn4.Contains("Flu Shot"))
                 {
                     return "/UserManagement.UI;component/Assets/medicine.png";
                 }

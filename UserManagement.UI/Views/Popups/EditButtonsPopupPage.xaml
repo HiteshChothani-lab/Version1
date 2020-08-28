@@ -175,6 +175,18 @@
                                                Text="Flu Shot"/>
                         </Grid>
                     </ToggleButton.Content>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Checked">
+                            <i:InvokeCommandAction Command="{Binding Path=VeryTerribleCheckedCommand, Mode=OneWay}"
+                                                           CommandParameter="1" />
+                        </i:EventTrigger>
+
+                        <i:EventTrigger EventName="Unchecked">
+                            <i:InvokeCommandAction Command="{Binding Path=VeryTerribleUncheckedCommand, Mode=OneWay}"
+                                                               CommandParameter="1" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="1" Margin="5,5"
@@ -205,12 +217,12 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Checked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleCheckedCommand, Mode=OneWay}"
-                                                           CommandParameter="1" />
+                                                           CommandParameter="2" />
                         </i:EventTrigger>
 
                         <i:EventTrigger EventName="Unchecked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleUncheckedCommand, Mode=OneWay}"
-                                                               CommandParameter="1" />
+                                                               CommandParameter="2" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ToggleButton>
@@ -242,12 +254,12 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Checked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleCheckedCommand, Mode=OneWay}"
-                                                           CommandParameter="2" />
+                                                           CommandParameter="3" />
                         </i:EventTrigger>
 
                         <i:EventTrigger EventName="Unchecked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleUncheckedCommand, Mode=OneWay}"
-                                                               CommandParameter="2" />
+                                                               CommandParameter="3" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ToggleButton>
@@ -279,12 +291,12 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Checked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleCheckedCommand, Mode=OneWay}"
-                                                           CommandParameter="3" />
+                                                           CommandParameter="4" />
                         </i:EventTrigger>
 
                         <i:EventTrigger EventName="Unchecked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleUncheckedCommand, Mode=OneWay}"
-                                                               CommandParameter="3" />
+                                                               CommandParameter="4" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ToggleButton>
@@ -316,12 +328,12 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Checked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleCheckedCommand, Mode=OneWay}"
-                                                           CommandParameter="4" />
+                                                           CommandParameter="5" />
                         </i:EventTrigger>
 
                         <i:EventTrigger EventName="Unchecked">
                             <i:InvokeCommandAction Command="{Binding Path=VeryTerribleUncheckedCommand, Mode=OneWay}"
-                                                               CommandParameter="4" />
+                                                               CommandParameter="5" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ToggleButton>

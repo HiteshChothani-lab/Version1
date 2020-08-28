@@ -343,6 +343,7 @@ namespace UserManagement.UI.ViewModels
             if (string.IsNullOrEmpty(parameter))
             {
                 this.IsCheckedVeryTerribleNone = false;
+                IsCheckedButtonC = false;
                 this.IsCheckedSubButton1 = false;
                 this.IsCheckedSubButton2 = false;
                 this.IsCheckedCovid19 = false;
@@ -351,25 +352,32 @@ namespace UserManagement.UI.ViewModels
             else if (parameter == "1")
             {
                 if (this.IsCheckedVeryTerribleNone)
-                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton2 == false &&
-                    this.IsCheckedCovid19 == false && this.IsCheckedOtherVaccines == false;
+                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton1 == false && 
+                        this.IsCheckedSubButton2 == false &&
+                        this.IsCheckedCovid19 == false && this.IsCheckedOtherVaccines == false;
             }
             else if (parameter == "2")
             {
                 if (this.IsCheckedVeryTerribleNone)
-                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton1 == false &&
+                    this.IsCheckedVeryTerribleNone = IsCheckedButtonC == false && this.IsCheckedSubButton2 == false &&
                     this.IsCheckedCovid19 == false && this.IsCheckedOtherVaccines == false;
             }
             else if (parameter == "3")
             {
                 if (this.IsCheckedVeryTerribleNone)
-                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton1 == false &&
-                    this.IsCheckedSubButton2 == false && this.IsCheckedOtherVaccines == false;
+                    this.IsCheckedVeryTerribleNone = IsCheckedButtonC == false && this.IsCheckedSubButton1 == false &&
+                    this.IsCheckedCovid19 == false && this.IsCheckedOtherVaccines == false;
             }
             else if (parameter == "4")
             {
                 if (this.IsCheckedVeryTerribleNone)
-                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton1 == false &&
+                    this.IsCheckedVeryTerribleNone = IsCheckedButtonC == false && this.IsCheckedSubButton1 == false &&
+                    this.IsCheckedSubButton2 == false && this.IsCheckedOtherVaccines == false;
+            }
+            else if (parameter == "5")
+            {
+                if (this.IsCheckedVeryTerribleNone)
+                    this.IsCheckedVeryTerribleNone = IsCheckedButtonC == false && this.IsCheckedSubButton1 == false &&
                     this.IsCheckedSubButton2 == false && this.IsCheckedCovid19 == false;
             }
         }
@@ -380,6 +388,7 @@ namespace UserManagement.UI.ViewModels
             {
                 this.IsCheckedVeryTerribleNone = true;
                 this.IsCheckedOtherVaccines = true;
+                IsCheckedButtonC = false;
                 this.IsCheckedSubButton1 = false;
                 this.IsCheckedSubButton2 = false;
                 this.IsCheckedCovid19 = false;
@@ -390,30 +399,43 @@ namespace UserManagement.UI.ViewModels
                 this.IsCheckedSubButton2 = false;
                 this.IsCheckedCovid19 = false;
                 this.IsCheckedOtherVaccines = false;
-                this.IsCheckedSubButton1 = true;
+                this.IsCheckedSubButton1 = false;
+                IsCheckedButtonC = true;
             }
             else if (parameter == "2")
             {
                 this.IsCheckedVeryTerribleNone = false;
-                this.IsCheckedSubButton1 = false;
+                this.IsCheckedSubButton2 = false;
                 this.IsCheckedCovid19 = false;
                 this.IsCheckedOtherVaccines = false;
-                this.IsCheckedSubButton2 = true;
+                IsCheckedButtonC = false;
+                this.IsCheckedSubButton1 = true;
             }
             else if (parameter == "3")
             {
                 this.IsCheckedVeryTerribleNone = false;
                 this.IsCheckedSubButton1 = false;
-                this.IsCheckedSubButton2 = false;
+                this.IsCheckedCovid19 = false;
                 this.IsCheckedOtherVaccines = false;
-                this.IsCheckedCovid19 = true;
+                IsCheckedButtonC = false;
+                this.IsCheckedSubButton2 = true;
             }
             else if (parameter == "4")
             {
                 this.IsCheckedVeryTerribleNone = false;
                 this.IsCheckedSubButton1 = false;
                 this.IsCheckedSubButton2 = false;
+                this.IsCheckedOtherVaccines = false;
+                IsCheckedButtonC = false;
+                this.IsCheckedCovid19 = true;
+            }
+            else if (parameter == "5")
+            {
+                this.IsCheckedVeryTerribleNone = false;
+                this.IsCheckedSubButton1 = false;
+                this.IsCheckedSubButton2 = false;
                 this.IsCheckedCovid19 = false;
+                IsCheckedButtonC = false;
                 this.IsCheckedOtherVaccines = true;
             }
         }
@@ -505,29 +527,26 @@ namespace UserManagement.UI.ViewModels
                 reqEntity.Button2 = "Devices";
             }
 
-            if (this.IsCheckedButtonC)
-            {
-                reqEntity.Button3 = "Flu Shot";
-            }
-
             if (this.IsCheckedButtonD)
             {
-                reqEntity.Button4 = "COVID19 Test";
+                reqEntity.Button3 = "COVID19 Test";
             }
 
-            reqEntity.Button5 = string.Empty;
-
-            if (this.IsCheckedVeryTerribleNone || IsCheckedOtherVaccines)
+            if (this.IsCheckedButtonC)
             {
-                reqEntity.Button5 = "Other Vaccines";
+                reqEntity.Button4 = "Flu Shot";
+            }
+            else if (this.IsCheckedVeryTerribleNone || IsCheckedOtherVaccines)
+            {
+                reqEntity.Button4 = "Other Vaccines";
             }
             else if (this.IsCheckedSubButton1)
             {
-                reqEntity.Button5 = "Shingles";
+                reqEntity.Button4 = "Shingles";
             }
             else if (this.IsCheckedSubButton2)
             {
-                reqEntity.Button5 = "Pneumococcus";
+                reqEntity.Button4 = "Pneumococcus";
             }
 
             SetLoaderVisibility("Adding user...");
