@@ -154,6 +154,7 @@ namespace UserManagement.WebServices
         {
             string endpoint = $"manage_user.php?" +
                 $"master_store_id={Config.MasterStore.StoreId}&" +
+                $"super_master_id={Config.MasterStore.UserId}&" +
                 $"action=update_idr_archive&" +
                 $"id={reqContract.Id}";
 
@@ -168,6 +169,7 @@ namespace UserManagement.WebServices
         {
             string endpoint = $"manage_user.php?" +
                 $"master_store_id={Config.MasterStore.StoreId}&" +
+                $"super_master_id={Config.MasterStore.UserId}&" +
                 $"action=update_idr_archive&" +
                 $"id={reqContract.Id}";
 
@@ -182,6 +184,7 @@ namespace UserManagement.WebServices
         {
             string endpoint = $"manage_user.php?" +
                 $"master_store_id={Config.MasterStore.StoreId}&" +
+                $"super_master_id={Config.MasterStore.UserId}&" +
                 $"action=update_idr&" +
                 $"id={reqContract.Id}";
 
