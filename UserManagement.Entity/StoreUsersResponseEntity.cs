@@ -227,6 +227,11 @@ namespace UserManagement.Entity
             get => ColorNames.Yellow;
         }
 
+        public bool IsItemMovable
+        {
+            get => Column2RowColor != ColorNames.Yellow;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyRaised(string propertyname)

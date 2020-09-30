@@ -578,8 +578,8 @@
                                             BorderThickness="1">
                                         <Grid Margin="5">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
                                             <Grid.RowDefinitions>
@@ -587,7 +587,8 @@
                                                 <RowDefinition />
                                             </Grid.RowDefinitions>
 
-                                            <StackPanel>
+                                            <!--Move-->
+                                            <StackPanel Visibility="{Binding IsItemMovable, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}" Margin="5,0">
                                                 <Image Width="25"
                                                        Height="25"
                                                        Margin="0"
@@ -612,31 +613,7 @@
                                                 </i:Interaction.Triggers>
                                             </StackPanel>
 
-                                            <StackPanel Grid.Row="1">
-                                                <Image Width="25"
-                                                       Height="25"
-                                                       Margin="0"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="/UserManagement.UI;component/Assets/icon_edit.png"
-                                                       Stretch="Fill" />
-
-                                                <TextBlock HorizontalAlignment="Center"
-                                                           VerticalAlignment="Center"
-                                                           FontSize="10"
-                                                           FontWeight="Bold"
-                                                           Foreground="#00167E"
-                                                           Text="Edit"
-                                                           TextWrapping="Wrap" />
-
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditStoreUserCommand, Mode=OneWay}"
-                                                                               CommandParameter="{Binding .}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </StackPanel>
-
+                                            <!--Flag-->
                                             <StackPanel Grid.Column="1">
                                                 <Image Width="25"
                                                        Height="25"
@@ -662,8 +639,34 @@
                                                 </i:Interaction.Triggers>
                                             </StackPanel>
 
-                                            <StackPanel Grid.Row="1"
-                                                        Grid.Column="1">
+                                            <!--Edit-->
+                                            <StackPanel Grid.Row="1" Visibility="Collapsed">
+                                                <Image Width="25"
+                                                       Height="25"
+                                                       Margin="0"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Source="/UserManagement.UI;component/Assets/icon_edit.png"
+                                                       Stretch="Fill" />
+
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="10"
+                                                           FontWeight="Bold"
+                                                           Foreground="#00167E"
+                                                           Text="Edit"
+                                                           TextWrapping="Wrap" />
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=MainPage1, Path=DataContext.EditStoreUserCommand, Mode=OneWay}"
+                                                                               CommandParameter="{Binding .}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </StackPanel>
+
+                                            <!--Delete-->
+                                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                                                 <Image Width="25"
                                                        Height="25"
                                                        Margin="0"
