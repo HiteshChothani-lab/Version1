@@ -233,9 +233,11 @@ namespace UserManagement.Entity
             get => Column2RowColor != ColorNames.Yellow;
         }
 
+        public bool IsFluShotAdded { get => Btn4.Contains("Flu Shot"); }
+
         public string Column1StatusImage
         {
-            get => this.VersionForm != null && this.VersionForm.Count > 0 ? "/UserManagement.UI;component/Assets/status_complete.png" : "/UserManagement.UI;component/Assets/status_incomplete.png";
+            get => IsFluShotAdded ? this.VersionForm != null && this.VersionForm.Count > 0 ? "/UserManagement.UI;component/Assets/status_complete.png" : "/UserManagement.UI;component/Assets/status_incomplete.png" : string.Empty;
 
             //This is for Test
             //get => this.IsFlagSet ? "/UserManagement.UI;component/Assets/status_complete.png" : 
