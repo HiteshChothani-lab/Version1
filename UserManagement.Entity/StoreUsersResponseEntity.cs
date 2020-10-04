@@ -64,6 +64,7 @@ namespace UserManagement.Entity
         public string Question2 { get; set; }
         public string Question3 { get; set; }
         public string Question4 { get; set; }
+        public List<VersionForm> VersionForm { get; set; }
 
         public bool IsFlagSet
         {
@@ -232,11 +233,33 @@ namespace UserManagement.Entity
             get => Column2RowColor != ColorNames.Yellow;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string Column1StatusImage
+        {
+            get => this.VersionForm != null && this.VersionForm.Count > 0 ? "/UserManagement.UI;component/Assets/status_complete.png" : "/UserManagement.UI;component/Assets/status_incomplete.png";
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyRaised(string propertyname)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
+    }
+
+    public class VersionForm
+    {
+        public string Id { get; set; }
+        public string SurveyId { get; set; }
+        public string Type { get; set; }
+        public string FormType { get; set; }
+        public string Title { get; set; }
+        public List<Answer> Answers { get; set; }
+    }
+
+    public class Answer
+    {
+        public string Id { get; set; }
+        public string QuestionId { get; set; }
+        public string SurveyId { get; set; }
+        public string AnsweredText { get; set; }
     }
 }

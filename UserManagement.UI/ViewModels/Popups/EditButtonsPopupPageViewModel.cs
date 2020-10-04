@@ -122,6 +122,20 @@ namespace UserManagement.UI.ViewModels
             set => SetProperty(ref _isCheckedVeryTerribleNone, value);
         }
 
+        private bool _isVaccinesEditable;
+        public bool IsVaccinesEditable
+        {
+            get => _isVaccinesEditable;
+            set => SetProperty(ref _isVaccinesEditable, value);
+        }
+
+        private double _vaccinesOpacity = 1.0;
+        public double VaccinesOpacity
+        {
+            get => _vaccinesOpacity;
+            set => SetProperty(ref _vaccinesOpacity, value);
+        }
+
         public DelegateCommand CancelCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
         public DelegateCommand<string> VeryTerribleCheckedCommand { get; private set; }
@@ -349,7 +363,7 @@ namespace UserManagement.UI.ViewModels
             if (IsCheckedButtonC || !string.IsNullOrWhiteSpace(SelectedStoreUser.Btn4))
             {
                 this.IsCheckedOther = true;
-                if("Flu Shot".Equals(SelectedStoreUser.Btn4))
+                if ("Flu Shot".Equals(SelectedStoreUser.Btn4))
                 {
                     this.IsCheckedButtonC = true;
                 }
@@ -367,6 +381,12 @@ namespace UserManagement.UI.ViewModels
                     this.IsCheckedSubButton2 = true;
                 }
             }
+
+            if (SelectedStoreUser.VersionForm != null && SelectedStoreUser.VersionForm.Count > 0)
+            {
+                IsVaccinesEditable = false;
+                VaccinesOpacity = 0.2;
+            }
         }
 
         private void SetUnsetProperties()
@@ -378,6 +398,8 @@ namespace UserManagement.UI.ViewModels
             this.IsUserTypeMobile = false;
             this.IsUserTypeNonMobile = false;
             this.IsSelectedStoreUser = false;
+            IsVaccinesEditable = true;
+            VaccinesOpacity = 1.0;
         }
     }
 }
