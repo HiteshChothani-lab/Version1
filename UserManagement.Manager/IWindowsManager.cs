@@ -23,5 +23,6 @@ namespace UserManagement.Manager
         Task<DefaultResponseEntity> MoveStoreUser(MoveStoreUserRequestEntity reqEntity);
         Task<DefaultResponseEntity> UpdateButtons(UpdateButtonsRequestEntity reqEntity);
         Task<DefaultResponseEntity> SetUnsetFlag(SetUnsetFlagRequestEntity reqEntity);
+        Task<UserSignatureResponseEntity> GetUserSignature(UserSignatureRequestEntity reqEntity);
     }
 }

@@ -282,5 +282,20 @@ namespace UserManagement.Manager
 
             return respEntity;
         }
+
+        public async Task<UserSignatureResponseEntity> GetUserSignature(UserSignatureRequestEntity reqEntity)
+        {
+            if (!Connectivity.IsInternetAvailable)
+            {
+                return new UserSignatureResponseEntity() { StatusCode = (int)GenericStatusValue.NoInternetConnection };
+            }
+
+            var reqContract = Mapper.Map<UserSignatureRequestContract>(reqEntity);
+
+            var respContract = await _windowsWebService.GetUserSignature(reqContract);
+            var respEntity = Mapper.Map<UserSignatureResponseEntity>(respContract);
+
+            return respEntity;
+        }
     }
 }

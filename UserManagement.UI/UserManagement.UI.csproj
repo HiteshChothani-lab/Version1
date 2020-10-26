@@ -320,5 +320,8 @@
     <Resource Include="Assets\status_edit.png" />
     <Resource Include="Assets\status_incomplete.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\printer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

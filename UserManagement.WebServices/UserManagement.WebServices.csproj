@@ -95,6 +95,7 @@
     <Compile Include="DataContracts\Request\SetUnsetFlagRequestContract.cs" />
     <Compile Include="DataContracts\Request\UpdateButtonsRequestContract.cs" />
     <Compile Include="DataContracts\Request\UpdateNonMobileStoreUserRequestContract.cs" />
+    <Compile Include="DataContracts\Request\UserSignatureRequestContract.cs" />
     <Compile Include="DataContracts\Request\ValidateUserRequestContract.cs" />
     <Compile Include="DataContracts\Request\CheckUserRequestContract.cs" />
     <Compile Include="DataContracts\Response\DefaultResponseContract.cs" />

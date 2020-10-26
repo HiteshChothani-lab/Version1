@@ -352,7 +352,7 @@ namespace UserManagement.UI.ViewModels
             else if (parameter == "1")
             {
                 if (this.IsCheckedVeryTerribleNone)
-                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton1 == false && 
+                    this.IsCheckedVeryTerribleNone = this.IsCheckedSubButton1 == false &&
                         this.IsCheckedSubButton2 == false &&
                         this.IsCheckedCovid19 == false && this.IsCheckedOtherVaccines == false;
             }
@@ -465,7 +465,7 @@ namespace UserManagement.UI.ViewModels
                 }
             }
 
-            if(IsCheckedCovid19)
+            if (IsCheckedCovid19)
             {
                 MessageBox.Show("Sorry, COVID-19 is not available at moment.", "Warning", MessageBoxButton.OK);
                 return;
@@ -868,16 +868,19 @@ namespace UserManagement.UI.ViewModels
             }
         }
 
-        private void ExecuteUserDetailWindowCommand(StoreUserEntity user)
+        private async void ExecuteUserDetailWindowCommand(StoreUserEntity user)
         {
             if (userDetailsPage != null)
             {
                 userDetailsPage.Close();
                 userDetailsPage = null;
             }
+            userDetailsPage = new UserDetailsPage(user);
 
-            userDetailsPage = new UserDetailsPage { DataContext = user };
-            userDetailsPage.PostalCodeText.Text = user.IsZipCode ? "Zip :" : "Postal :";
+            var result = await GetUserSignature(user);
+            if (result != null && !string.IsNullOrWhiteSpace(result.Url))
+                userDetailsPage.Url = new Uri(result.Url);
+
             userDetailsPage.Show();
         }
 
@@ -1106,6 +1109,48 @@ namespace UserManagement.UI.ViewModels
                     this.ArchieveStoreUsers = new ObservableCollection<StoreUserEntity>(result.Data);
                 }
             }
+        }
+
+        private async Task<UserSignatureResponseEntity> GetUserSignature(StoreUserEntity user)
+        {
+            if (user.VersionForm != null && user.VersionForm.Count > 0)
+            {
+                try
+                {
+                    var result = await _windowsManager.GetUserSignature(new UserSignatureRequestEntity()
+                    {
+                        Id = user.Id,
+                        MasterStoreId = user.MasterStoreId,
+                        SurveyId = user.VersionForm.FirstOrDefault().SurveyId
+                    });
+
+                    if (result.StatusCode == (int)GenericStatusValue.Success)
+                    {
+                        if (Convert.ToBoolean(result.Status))
+                        {
+                            return result;
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.Messagee, "Get Signature Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else if (result.StatusCode == (int)GenericStatusValue.NoInternetConnection)
+                    {
+                        MessageBox.Show(MessageBoxMessage.NoInternetConnection, "Get Signature Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (result.StatusCode == (int)GenericStatusValue.HasErrorMessage)
+                    {
+                        MessageBox.Show(result.Message, "Get Signature Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Get Signature Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            return null;
         }
     }
 }

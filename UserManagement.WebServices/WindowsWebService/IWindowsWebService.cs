@@ -22,6 +22,7 @@ namespace UserManagement.WebServices
         Task<DefaultResponseContract> MoveStoreUser(MoveStoreUserRequestContract reqContract);
         Task<DefaultResponseContract> UpdateButtons(UpdateButtonsRequestContract reqEntity);
         Task<DefaultResponseContract> SetUnsetFlag(SetUnsetFlagRequestContract reqContract);
+        Task<UsersSignatureResponseContract> GetUserSignature(UserSignatureRequestContract reqContract);
         //Task<DefaultResponseContract> SaveUserData(SetUnsetFlagRequestContract reqContract);
     }
 }

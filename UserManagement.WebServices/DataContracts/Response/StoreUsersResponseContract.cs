@@ -4,6 +4,18 @@ using UserManagement.Common.Converters;
 
 namespace UserManagement.WebServices.DataContracts.Response
 {
+    public class UsersSignatureResponseContract : ContractBase
+    {
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("message")]
+        public string Messagee { get; set; }
+    }
+
     public class StoreUsersResponseContract : ContractBase
     {
         [JsonProperty("data")]

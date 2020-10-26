@@ -45,14 +45,18 @@ namespace UserManagement.Manager.Mappers
             CreateMap<ManageUserRequestEntity, ManageUserRequestContract>();
             CreateMap<ManageUserRequestContract, ManageUserRequestEntity>();
 
-            CreateMap<DeleteArchiveUserRequestEntity, DeleteArchiveUserRequestContract>();
-            CreateMap<DeleteArchiveUserRequestContract, DeleteArchiveUserRequestEntity>();
+            CreateMap<UserSignatureResponseEntity, UsersSignatureResponseContract>();
+            CreateMap<UsersSignatureResponseContract, UserSignatureResponseEntity>();
+
+            CreateMap<StoreUsersResponseEntity, StoreUsersResponseContract>();
+            CreateMap<StoreUsersResponseContract, StoreUsersResponseEntity>();
 
             CreateMap<EditStoreUserRequestEntity, EditStoreUserRequestContract>();
             CreateMap<UpdateNonMobileStoreUserRequestEntity, UpdateNonMobileStoreUserRequestContract>();
             CreateMap<MoveStoreUserRequestEntity, MoveStoreUserRequestContract>();
             CreateMap<UpdateButtonsRequestEntity, UpdateButtonsRequestContract>();
             CreateMap<SetUnsetFlagRequestEntity, SetUnsetFlagRequestContract>();
+            CreateMap<UserSignatureRequestEntity, UserSignatureRequestContract>();
 
         }
     }

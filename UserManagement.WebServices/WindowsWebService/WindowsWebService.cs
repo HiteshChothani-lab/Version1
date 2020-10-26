@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using UserManagement.Common.Constants;
@@ -110,9 +111,13 @@ namespace UserManagement.WebServices
                 $"master_store_id={reqContract.StoreId}&" +
                 $"super_master_id={reqContract.SuperMasterId}";
 
+            string json = "{\"data\":[{\"id\":\"19660\",\"user_id\":\"17621\",\"super_master_id\":\"1\",\"master_store_id\":\"2104\",\"store_id\":\"0\",\"order_id\":\"19660\",\"btn1\":\"\",\"btn2\":\"\",\"btn3\":\"\",\"btn4\":\"Flu Shot\",\"btn5\":\"\",\"btn_a_b\":\"\",\"note\":\"\",\"note_color\":\"\",\"tag\":\"\",\"orphan_status\":\"0\",\"recent_status\":\"0\",\"deliver_order_status\":\"1\",\"idr_status\":\"1\",\"account_block_status\":\"1\",\"bad_exp_desc\":\"\",\"service_used_status\":\"0\",\"q1\":\"\",\"q2\":\"\",\"q3\":\"\",\"q4\":\"\",\"fill_status\":\"0\",\"room_num\":null,\"firstname\":\"Donald\",\"lastname\":\"Bradford\",\"country_code\":\"1\",\"mobile\":\"6132195268\",\"status\":\"D\",\"home_phone\":null,\"postal_code\":null,\"country\":null,\"state\":null,\"city\":null,\"gender\":\"male\",\"dob\":\"2000 - 1 - 1\",\"age\":\"20\",\"reg_type\":\"Walk In\",\"express_time\":\"\",\"register_type\":\"first\",\"version_form\":[{\"id\":\"839\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"First Name\",\"answers\":[{\"id\":\"1237\",\"question_id\":\"839\",\"survey_id\":\"101010\",\"answeredText\":\"Donald\"}]},{\"id\":\"840\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Last Name\",\"answers\":[{\"id\":\"1238\",\"question_id\":\"840\",\"survey_id\":\"101010\",\"answeredText\":\"Bradford\"}]},{\"id\":\"841\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Phone Number\",\"answers\":[{\"id\":\"1239\",\"question_id\":\"841\",\"survey_id\":\"101010\",\"answeredText\":\"6132195268\"}]},{\"id\":\"842\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Card number\",\"answers\":[{\"id\":\"1240\",\"question_id\":\"842\",\"survey_id\":\"101010\",\"answeredText\":\"49161649\"}]},{\"id\":\"843\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Have you had a serious reaction to influenza in the past?\",\"answers\":[{\"id\":\"1241\",\"question_id\":\"843\",\"survey_id\":\"101010\",\"answeredText\":\"true\"}]},{\"id\":\"844\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Do you have any allergies, including allergy to eggs or egg products ? \",\"answers\":[{\"id\":\"1242\",\"question_id\":\"844\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]},{\"id\":\"845\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Do you have any allergy to any of the components of the flue vaccine?\",\"answers\":[{\"id\":\"1243\",\"question_id\":\"845\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]},{\"id\":\"846\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Are you sick today?\",\"answers\":[{\"id\":\"1244\",\"question_id\":\"846\",\"survey_id\":\"101010\",\"answeredText\":\"true\"}]},{\"id\":\"847\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Do you have a new or changing condition affecting the brain or nervous system?\",\"answers\":[{\"id\":\"1245\",\"question_id\":\"847\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]},{\"id\":\"848\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Do you have a new or changing condition affecting the brain or nervous system?\",\"answers\":[{\"id\":\"1246\",\"question_id\":\"848\",\"survey_id\":\"101010\",\"answeredText\":\"true\"}]},{\"id\":\"849\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Have you ever had Guilain - Barre Syndrome ? \",\"answers\":[{\"id\":\"1247\",\"question_id\":\"849\",\"survey_id\":\"101010\",\"answeredText\":\"true\"}]},{\"id\":\"850\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Are you pregnant ? \",\"answers\":[{\"id\":\"1248\",\"question_id\":\"850\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]},{\"id\":\"851\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Are you receiving vaccine for the first time ? \",\"answers\":[{\"id\":\"1249\",\"question_id\":\"851\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]},{\"id\":\"852\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Have you received shingles vaccine ? \",\"answers\":[{\"id\":\"1250\",\"question_id\":\"852\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]},{\"id\":\"853\",\"survey_id\":\"101010\",\"type\":\"FORM_ANSWER\",\"form_type\":\"Flu Shot\",\"title\":\"Have you received a pneumococcal vaccine ? \",\"answers\":[{\"id\":\"1251\",\"question_id\":\"853\",\"survey_id\":\"101010\",\"answeredText\":\"false\"}]}]}],\"status\":\"True\",\"message\":\"Success\"}";
+
+            var result = JsonConvert.DeserializeObject<StoreUsersResponseContract>(json);
+
             var responseTuple = await GetAsync<StoreUsersResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
-            var resultContract = responseTuple.Item2 ?? new StoreUsersResponseContract();
+            var resultContract = result;//responseTuple.Item2 ?? new StoreUsersResponseContract();
             resultContract.StatusCode = responseTuple.Item4;
             return resultContract;
         }
@@ -314,6 +319,21 @@ namespace UserManagement.WebServices
             var responseTuple = await GetAsync<DefaultResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
             var resultContract = responseTuple.Item2 ?? new DefaultResponseContract();
+            resultContract.StatusCode = responseTuple.Item4;
+            return resultContract;
+        }
+
+        public async Task<UsersSignatureResponseContract> GetUserSignature(UserSignatureRequestContract reqContract)
+        {
+            string endpoint = $"get_form_signature.php?" +
+                $"id={reqContract.Id}&" +
+                $"survey_id={reqContract.SurveyId}&" +
+                $"master_store_id={reqContract.MasterStoreId}&" +
+                $"super_master_id={Config.MasterStore.UserId}";
+
+            var responseTuple = await GetAsync<UsersSignatureResponseContract>(endpoint, Config.CurrentUser.Token);
+            responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
+            var resultContract = responseTuple.Item2 ?? new UsersSignatureResponseContract();
             resultContract.StatusCode = responseTuple.Item4;
             return resultContract;
         }

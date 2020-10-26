@@ -6,12 +6,20 @@ using UserManagement.Common.Constants;
 
 namespace UserManagement.Entity
 {
+    public class UserSignatureResponseEntity : EntityBase
+    {
+        public string Url { get; set; }
+        public string Status { get; set; }
+        public string Messagee { get; set; }
+    }
+
     public class StoreUsersResponseEntity : EntityBase
     {
         public List<StoreUserEntity> Data { get; set; }
         public string Status { get; set; }
         public string Messagee { get; set; }
     }
+
     public class ArchieveStoreUsersResponseEntity : EntityBase
     {
         public long ArchieveSize { get; set; }
